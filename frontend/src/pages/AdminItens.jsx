@@ -6,7 +6,6 @@ export default function AdminItens() {
   const [itens, setItens] = useState([]);
   const [categorias, setCategorias] = useState([]);
 
-  // Formulário
   const [modoEdicao, setModoEdicao] = useState(false);
   const [form, setForm] = useState({
     id: null,
@@ -19,9 +18,6 @@ export default function AdminItens() {
 
 const token = localStorage.getItem("admintoken");
 
-  // ==========================
-  // Carregar itens e categorias
-  // ==========================
   useEffect(() => {
     carregarItens();
     carregarCategorias();
@@ -37,9 +33,6 @@ const token = localStorage.getItem("admintoken");
     setCategorias(res.data);
   }
 
-  // ==========================
-  // Controle de Formulário
-  // ==========================
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
@@ -56,9 +49,6 @@ const token = localStorage.getItem("admintoken");
     });
   }
 
-  // ==========================
-  // Criar Item
-  // ==========================
   async function criarItem() {
     try {
       await api.post("/itens", form, {
@@ -75,9 +65,6 @@ const token = localStorage.getItem("admintoken");
     }
   }
 
-  // ==========================
-  // Editar Item
-  // ==========================
   function selecionarItem(item) {
     setModoEdicao(true);
     setForm({
@@ -106,9 +93,6 @@ const token = localStorage.getItem("admintoken");
     }
   }
 
-  // ==========================
-  // Excluir item
-  // ==========================
   async function excluirItem(id) {
     if (!confirm("Tem certeza que deseja excluir este item?")) return;
 
@@ -126,17 +110,13 @@ const token = localStorage.getItem("admintoken");
     }
   }
 
-  // ==========================
-  // RENDERIZAÇÃO
-  // ==========================
   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar />
 
       <div className="p-6 max-w-5xl mx-auto">
         <h1 className="text-3xl font-bold mb-6">Gerenciar Itens</h1>
-
-        {/* FORMULÁRIO */}
+        
         <div className="bg-white p-6 shadow rounded-lg mb-8">
 
           <h2 className="text-2xl font-semibold mb-4">
@@ -219,7 +199,6 @@ const token = localStorage.getItem("admintoken");
           </div>
         </div>
 
-        {/* LISTA DE ITENS */}
         <h2 className="text-2xl font-semibold mb-3">Itens Cadastrados</h2>
 
         <table className="w-full bg-white shadow rounded-lg overflow-hidden">
