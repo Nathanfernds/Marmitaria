@@ -7,21 +7,19 @@ export default function AdminPedidos() {
   const [pedidos, setPedidos] = useState([]);
   const navigate = useNavigate();
 
-  // Proteger rota: só entra se tiver token
   useEffect(() => {
     const token = localStorage.getItem("admintoken");
     if (!token) {
-      navigate("/admin"); // joga pro login
+      navigate("/admin");
       return;
     }
-
-    // Buscar pedidos
+    
     api
       .get("/pedidos", {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then((res) => {
-        // itens vem como JSON no banco → convertemos
+
         const pedidosFormatados = res.data.map((p) => ({
           ...p,
           itens: typeof p.itens === "string" ? JSON.parse(p.itens) : p.itens
@@ -33,7 +31,6 @@ export default function AdminPedidos() {
       });
   }, [navigate]);
 
-  // Função para atualizar o status
   async function atualizarStatus(id, novoStatus) {
     try {
       const token = localStorage.getItem("admintoken");
@@ -44,7 +41,6 @@ export default function AdminPedidos() {
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
-      // Atualizar na tela sem recarregar
       setPedidos((prev) =>
         prev.map((p) =>
           p.id === id ? { ...p, status: novoStatus } : p
@@ -72,7 +68,6 @@ export default function AdminPedidos() {
               </h2>
               <p className="text-gray-600">Mesa: {pedido.mesa}</p>
 
-              {/* LISTA DE ITENS */}
               <div className="mt-2">
                 <p className="font-semibold">Itens:</p>
                 <ul className="list-disc ml-6">
@@ -93,7 +88,6 @@ export default function AdminPedidos() {
                 Criado em: {new Date(pedido.criado_em).toLocaleString()}
               </p>
 
-              {/* ALTERAR STATUS */}
               <div className="mt-4">
                 <label className="text-sm font-semibold">
                   Alterar Status:
