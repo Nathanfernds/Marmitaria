@@ -3,10 +3,6 @@ const router = express.Router();
 const db = require("../config/db");
 const auth = require("../middleware/auth"); // 🔐 Proteção para admin
 
-/** ============================
- *  GET /itens (público)
- *  Lista todos os itens
- * ============================ */
 router.get("/", async (req, res) => {
     try {
         const result = await db.query(`
@@ -23,10 +19,6 @@ router.get("/", async (req, res) => {
     }
 });
 
-/** ============================
- *  GET /itens/:id (público)
- *  Buscar item específico
- * ============================ */
 router.get("/:id", async (req, res) => {
     try {
         const result = await db.query(
@@ -50,10 +42,6 @@ router.get("/:id", async (req, res) => {
     }
 });
 
-/** ============================
- *  POST /itens (ADMIN)
- *  Criar item
- * ============================ */
 router.post("/", auth, async (req, res) => {
     try {
         const { nome, descricao, imagem, preco, categoria_id } = req.body;
@@ -87,10 +75,6 @@ router.post("/", auth, async (req, res) => {
     }
 });
 
-/** ============================
- *  PUT /itens/:id (ADMIN)
- *  Editar item
- * ============================ */
 router.put("/:id", auth, async (req, res) => {
     try {
         const { nome, descricao, imagem, preco, categoria_id } = req.body;
@@ -121,10 +105,6 @@ router.put("/:id", auth, async (req, res) => {
     }
 });
 
-/** ============================
- *  DELETE /itens/:id (ADMIN)
- *  Excluir item
- * ============================ */
 router.delete("/:id", auth, async (req, res) => {
     try {
         const { id } = req.params;
