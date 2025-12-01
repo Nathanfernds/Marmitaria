@@ -8,7 +8,6 @@ function auth(req, res, next) {
     return res.status(401).json({ error: "Token não enviado" });
   }
 
-  // Aceita vários formatos: "Bearer token" ou "bearer token" ou só token
   const parts = authHeader.split(" ");
 
   let token = authHeader;
@@ -20,7 +19,6 @@ function auth(req, res, next) {
   try {
     const decoded = jwt.verify(token, SECRET);
 
-    // GARANTE nível admin
     if (!decoded.isAdmin) {
       return res.status(403).json({ error: "Apenas administradores podem acessar" });
     }
