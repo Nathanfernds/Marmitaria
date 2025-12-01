@@ -21,7 +21,6 @@ export default function Item() {
     return <p className="p-6">Carregando...</p>;
   }
 
-  // opcional: mostrar no console para debug
   console.log("Item carregado:", item);
 
   return (
