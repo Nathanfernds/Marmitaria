@@ -27,10 +27,8 @@ const router = createBrowserRouter([
   { path: "/carrinho", element: <Carrinho /> },
   { path: "/checkout", element: <Checkout /> },
 
-  // LOGIN ADMIN (público)
   { path: "/admin", element: <AdminLogin /> },
 
-  // ROTAS PROTEGIDAS
   { 
     path: "/admin/pedidos",
     element: (
