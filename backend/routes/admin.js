@@ -6,7 +6,6 @@ const bcrypt = require("bcrypt");
 
 const SECRET = "meusegredo";
 
-// LOGIN DO ADMIN
 router.post("/login", async (req, res) => {
     const { email, senha } = req.body;
 
@@ -28,7 +27,6 @@ router.post("/login", async (req, res) => {
             return res.status(401).json({ error: "Email ou senha incorretos" });
         }
 
-        // AGORA O TOKEN TEM NÍVEL ADMIN!!!
         const token = jwt.sign(
             {
                 id: admin.id,
