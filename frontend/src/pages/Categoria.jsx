@@ -4,18 +4,17 @@ import api from "../services/api";
 import Navbar from "../components/Navbar";
 
 export default function Categoria() {
-  const { id } = useParams(); // pega o ID da categoria
+  const { id } = useParams(); 
   const [itens, setItens] = useState([]);
   const [categoriaNome, setCategoriaNome] = useState("");
 
   useEffect(() => {
-    // Buscar itens
+   
     api.get("/itens").then((res) => {
       const filtrados = res.data.filter((item) => item.categoria_id == id);
       setItens(filtrados);
     });
 
-    // Buscar nome da categoria
     api.get("/categorias").then((res) => {
       const cat = res.data.find((c) => c.id == id);
       if (cat) setCategoriaNome(cat.nome);
