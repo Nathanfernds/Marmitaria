@@ -5,8 +5,7 @@ import { useCart } from "../context/CartContext";
 export default function Navbar() {
   const { token, logout } = useAdminAuth();
   const { cart } = useCart();
-
-  // quantidade total de itens no carrinho
+  
   const totalQtd = cart.reduce((t, item) => t + item.qtd, 0);
 
   return (
@@ -21,7 +20,6 @@ export default function Navbar() {
           Home
         </Link>
 
-        {/* Carrinho com bolinha */}
         <Link to="/carrinho" className="relative hover:text-amber-300 transition">
           Carrinho
 
@@ -31,15 +29,13 @@ export default function Navbar() {
             </span>
           )}
         </Link>
-
-        {/* LOGIN ADMIN VISÍVEL SE NÃO ESTIVER LOGADO */}
+        
         {!token && (
           <Link to="/admin" className="hover:text-amber-300 transition">
             Login Admin
           </Link>
         )}
-
-        {/* MENU ADMIN VISÍVEL SOMENTE DEPOIS DO LOGIN */}
+        
         {token && (
           <>
             <Link to="/admin/itens" className="hover:text-amber-300 transition">
