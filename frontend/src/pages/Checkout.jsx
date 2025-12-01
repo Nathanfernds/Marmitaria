@@ -33,7 +33,6 @@ export default function Checkout() {
         total
       });
 
-      // Salvar a confirmação que veio do backend
       setConfirmacao({
         id: res.data.pedido.id,
         status: res.data.pedido.status,
@@ -50,7 +49,6 @@ export default function Checkout() {
     setLoading(false);
   }
 
-  // Se já enviou, mostra a tela de confirmação
   if (confirmacao) {
     return (
       <div className="min-h-screen bg-gray-100">
@@ -86,7 +84,6 @@ export default function Checkout() {
     );
   }
 
-  // Tela normal de checkout
   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar />
@@ -94,7 +91,6 @@ export default function Checkout() {
       <div className="p-6 max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-4">Revisar Pedido</h1>
 
-        {/* LISTA DOS ITENS */}
         <div className="bg-white shadow-md p-4 rounded-lg mb-6">
           <h2 className="text-xl font-semibold mb-4">Itens</h2>
 
@@ -110,7 +106,6 @@ export default function Checkout() {
           </h2>
         </div>
 
-        {/* DADOS DO CLIENTE */}
         <div className="bg-white shadow-md p-4 rounded-lg mb-6">
           <h2 className="text-xl font-semibold mb-4">Informações</h2>
 
@@ -139,7 +134,6 @@ export default function Checkout() {
           ></textarea>
         </div>
 
-        {/* BOTÃO */}
         <button
           onClick={enviarPedido}
           disabled={loading}
