@@ -3,9 +3,6 @@ const router = express.Router();
 const db = require("../config/db");
 const auth = require("../middleware/auth");
 
-// ===========================
-// POST /pedidos  (PÚBLICO)
-// ===========================
 router.post("/", async (req, res) => {
   try {
     const { cliente, mesa, observacoes, itens, total } = req.body;
@@ -38,13 +35,8 @@ router.post("/", async (req, res) => {
   }
 });
 
-// ===========================
-// ROTAS PROTEGIDAS (APLICAR AUTH AQUI)
-// ===========================
-
 router.use(auth);
 
-// GET protegida
 router.get("/", async (req, res) => {
   try {
     const result = await db.query("SELECT * FROM pedidos ORDER BY id DESC");
@@ -55,7 +47,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-// PUT protegida
 router.put("/:id/status", async (req, res) => {
   try {
     const { status } = req.body;
