@@ -11,8 +11,7 @@ export function CartProvider({ children }) {
       return [];
     }
   });
-
-  // Persistir no localStorage
+  
   useEffect(() => {
     try {
       localStorage.setItem("carrinho", JSON.stringify(cart));
@@ -20,7 +19,7 @@ export function CartProvider({ children }) {
   }, [cart]);
 
   function normalize(item) {
-    // Garante id e preco numéricos e campos mínimos
+   
     const id = item.id ?? item.id_item ?? item._id ?? null;
     const preco = item.preco !== undefined ? Number(item.preco) : Number(item.price ?? 0);
     const nome = item.nome ?? item.name ?? "Item";
