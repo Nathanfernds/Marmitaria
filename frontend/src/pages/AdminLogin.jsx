@@ -10,15 +10,13 @@ export default function AdminLogin() {
   const [erro, setErro] = useState("");
 
   const navigate = useNavigate();
-  const { login } = useAdminAuth(); // <<< IMPORTANTE
-
+  const { login } = useAdminAuth(); 
   async function handleLogin(e) {
-    e.preventDefault(); // <<< evita recarregar página
+    e.preventDefault(); // 
 
     try {
       const res = await api.post("/admin/login", { email, senha });
 
-      // Salvar no Context e no localStorage
       login(res.data.token);
 
       navigate("/admin/pedidos");
