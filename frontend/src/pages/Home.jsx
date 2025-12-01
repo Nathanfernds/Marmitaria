@@ -16,8 +16,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-100">
       <Navbar />
-
-      {/* Banner */}
+      
       <div 
         className="w-full h-64 bg-cover bg-center shadow-md"
         style={{ backgroundImage: `url(${banner})` }}
@@ -34,7 +33,6 @@ export default function Home() {
         <h2 className="text-3xl font-bold text-green-700">Categorias</h2>
         <p className="text-gray-700 mt-1 mb-6">Escolha o tipo de prato:</p>
 
-        {/* GRID DE CATEGORIAS */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           
           {categorias.map((cat) => (
